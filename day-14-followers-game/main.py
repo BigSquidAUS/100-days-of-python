@@ -13,7 +13,7 @@ def compare(first_contender, second_contender):
     else:
         return [second_contender,first_contender]
 
-def get_info():
+def get_random_contender():
     """Returns a random dictionary entry from game_data.data
     with fields: name, follower_count, description, country"""
     chosen_data = random.choice(game_data.data)
@@ -29,18 +29,18 @@ def the_game():
         # otherwise get one randomly using the get_info() function.
         # Set contender b to a random contender as well.
 
-        if len(previous_contender) < 1:
-            contender_a = get_info()
+        if len(previous_contender) < 1: #i.e. If the list is empty.
+            contender_a = get_random_contender()
         else:
             contender_a = previous_contender
 
-        contender_b = get_info()
+        contender_b = get_random_contender()
 
         print(len(previous_contender))
 
         # Check if they are both the same and if they are keep getting a new one until they are not.
         while contender_a == contender_b:
-            contender_b = get_info()
+            contender_b = get_random_contender()
             print("Both contenders were the same, getting a new contender.")
         print(f"Your score: {score}")
         print(f"Compare A: {contender_a["name"]}, {contender_a["description"]}, from {contender_a["country"]}")
@@ -66,5 +66,9 @@ def the_game():
             print(f"Bad luck. You got it wrong.\n Final Score: {score}")
             break
 
+while True :
+    the_game()
+    play_again = input("Do you want to play again? Y/N\n")
 
-the_game()
+    if play_again.lower() not in ("y", "yes"):
+        break
