@@ -55,11 +55,8 @@ def process_payment(selected_drink):
     """Simulates taking money, returns True if user pays enough for the drink. Returns false if they don't"""
     global resources
     cost = MENU[selected_drink]["cost"]
-
-    print(f"You chose {selected_drink.capitalize()}. That will be ${cost:.2f}")
-
-    transacting = True
     money_inserted = 0.0
+    print(f"You chose {selected_drink.capitalize()}. That will be ${cost:.2f}")
 
     def give_change(given,required):
         """Calculates change to give as a float and returns it. Subtracts the change given from the machines resources"""
@@ -67,6 +64,7 @@ def process_payment(selected_drink):
         resources["money"] -= change_to_give
         return change_to_give
 
+    transacting = True
     while transacting:
         user_input = input("Simulate entering coin. Enter coin value as float. Enter 'F' when done.\n")
 
