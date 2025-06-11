@@ -58,7 +58,7 @@ def challenge_05():
     for n in range(0,360,5):
         tim.pencolor(rand_color_value())
         tim.setheading(n)
-        tim.circle(200)
+        tim.circle(100)
 
 challenge_05()
 
