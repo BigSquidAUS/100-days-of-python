@@ -30,14 +30,18 @@ dot_size = 20
 dot_spacing = 50
 available_colors = extract_colors(30,500)
 turtle.pensize(dot_size)
+turtle.speed("fastest")
 
 screen = Screen()
-screen_width = 600
-screen_height = 600
-screen.screensize(screen_width,screen_height)
+screen_width = int((grid_size[0]-1) * dot_spacing + dot_size + (dot_size // 2))
+screen_height = int((grid_size[1]-1) * dot_spacing + dot_size + (dot_size // 2))
+screen.setup(screen_width,screen_height)
+
+print(f"W: {screen_width}")
+print(f"H: {screen_height}")
 
 screen.colormode(255)
-turtle.speed("fastest")
+
 
 bottom_left_x = (-screen_width // 2) + (dot_size // 2)
 bottom_left_y = (-screen_height // 2) + dot_size
