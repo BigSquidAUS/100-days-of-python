@@ -26,16 +26,17 @@ def extract_colors(number_of_colors,brightness_factor):
 
 # Lesson requirements: Grid 10 x 10, Dot size 20, spacing 50.
 turtle = Turtle()
-grid_size = [20,20]
+grid_size = [7,25]
 dot_size = 20
 dot_spacing = 50
+padding = dot_size * 2
 available_colors = extract_colors(30,500)
 turtle.pensize(dot_size)
 turtle.speed("fastest")
 
 screen = Screen()
-screen_width = int((grid_size[0]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2))
-screen_height = int((grid_size[1]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2))
+screen_width = int((grid_size[1]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2) + padding)
+screen_height = int((grid_size[0]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2) + padding)
 screen.setup(screen_width,screen_height)
 
 print(f"W: {screen_width}")
@@ -44,8 +45,8 @@ print(f"H: {screen_height}")
 screen.colormode(255)
 
 
-bottom_left_x = (-screen_width // 2) + (dot_size // 2)
-bottom_left_y = (-screen_height // 2) + dot_size
+bottom_left_x = (-screen_width // 2) + (dot_size // 2) + padding//2
+bottom_left_y = (-screen_height // 2) + dot_size + padding//2
 
 turtle.pu()
 turtle.goto(bottom_left_x,bottom_left_y)
