@@ -26,7 +26,7 @@ def extract_colors(number_of_colors,brightness_factor):
 screen = Screen()
 turtle = Turtle()
 screen.colormode(255)
-turtle.speed("fastest")
+turtle.speed("slow")
 
 # Lesson requirements: Grid 10 x 10, Dot size 20, spacing 50.
 grid_size = [10,10]
@@ -37,16 +37,16 @@ turtle.pensize(dot_size)
 
 turtle.pu()
 
-for x in range(grid_size[1] + 1):
+for x in range(grid_size[1]):
     for y in range(grid_size[0]):
         turtle.pencolor(random.choice(available_colors))
         turtle.dot(dot_size)
+        turtle.setheading(90)
         turtle.forward(dot_spacing)
 
     turtle.home()
     turtle.setheading(0)
-    turtle.forward(x * dot_spacing)
-    turtle.setheading(90)
+    turtle.forward((x + 1) * dot_spacing)
 
 turtle.home()
 
