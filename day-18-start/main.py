@@ -6,7 +6,7 @@ screen = Screen()
 tim = Turtle()
 tim.shape("turtle")
 tim.color("#4e8752")
-tim.speed(2)
+tim.speed("fastest")
 
 color_palette = ["navy","sea green","saddle brown","khaki","medium slate blue","light coral","light green","dodger blue","sandy brown","rosy brown"]
 screen.colormode(255)
