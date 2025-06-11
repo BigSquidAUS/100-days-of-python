@@ -1,3 +1,4 @@
+import math
 import random
 import colorgram
 from turtle import Turtle, Screen
@@ -33,8 +34,8 @@ turtle.pensize(dot_size)
 turtle.speed("fastest")
 
 screen = Screen()
-screen_width = int((grid_size[0]-1) * dot_spacing + dot_size + (dot_size // 2))
-screen_height = int((grid_size[1]-1) * dot_spacing + dot_size + (dot_size // 2))
+screen_width = int((grid_size[0]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2))
+screen_height = int((grid_size[1]-1) * dot_spacing + dot_size + math.ceil(dot_size / 2))
 screen.setup(screen_width,screen_height)
 
 print(f"W: {screen_width}")
