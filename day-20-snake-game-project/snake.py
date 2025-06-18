@@ -1,4 +1,3 @@
-import time
 from turtle import Turtle
 
 STARTING_LENGTH = 3
@@ -19,11 +18,17 @@ class Snake:
 
     def create_snake(self):
         for segment in range(STARTING_LENGTH):
-            snake_segment = Turtle(shape="square")
-            snake_segment.pu()
-            snake_segment.color("white")
-            snake_segment.setx((-segment * 22))
-            self.the_snake.append(snake_segment)
+            self.add_segment(segment)
+
+    def add_segment(self, position):
+        snake_segment = Turtle(shape="square")
+        snake_segment.pu()
+        snake_segment.color("white")
+        self.the_snake.append(snake_segment)
+
+    def extend(self):
+        #Add new segment to the snake.
+        self.add_segment(self.the_snake[-1])
 
     def move(self):
         for seg_num in range(len(self.the_snake) - 1, 0, -1):
