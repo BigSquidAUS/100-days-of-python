@@ -41,8 +41,9 @@ while game_is_on:
 
     #Detect collision with tail:
     for segment in snake.the_snake[1:]: # List slicing. Position 1 to the end of the list. (ie: Skip the head of the snake)
-        if snake.head.distance(segment) < 10:
+        if snake.head.distance(segment) < 5:
             game_is_on = False
+            print("Collided with tail")
             score.game_over()
 
 screen.exitonclick()
