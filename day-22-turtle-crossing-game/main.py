@@ -25,10 +25,15 @@ while game_is_on:
 
     for car in cars.the_cars:
         car.move_car(score.level)
+
+        if player.distance((car.car_collision_area())) < 20:
+            player.reset_position()
+            score.reset_level()
+
         if car.xcor() <= -300:
             car.hideturtle()
             cars.the_cars.remove(car)
-            print(f"Car despawned, the_cars len {len(cars.the_cars)}")
+            #print(f"Car despawned, the_cars len {len(cars.the_cars)}")
 
     if player.ycor() >= 290: # Player has reached the top of the screen.
         score.level_up()

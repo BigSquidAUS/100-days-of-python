@@ -18,3 +18,7 @@ class Scoreboard(Turtle):
     def level_up(self):
         self.level += 1
         self.update_scoreboard()
+
+    def reset_level(self):
+        self.level = 1
+        self.update_scoreboard()
