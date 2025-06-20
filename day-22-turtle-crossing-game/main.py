@@ -33,7 +33,6 @@ while game_is_on:
         if car.xcor() <= -300:
             car.hideturtle()
             cars.the_cars.remove(car)
-            #print(f"Car despawned, the_cars len {len(cars.the_cars)}")
 
     if player.ycor() >= 290: # Player has reached the top of the screen.
         score.level_up()

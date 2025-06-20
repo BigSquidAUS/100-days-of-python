@@ -30,7 +30,6 @@ class CarManager(Turtle):
             new_car.color(random.choice(COLORS))
             new_car.goto(280,rand_y)
             new_car.showturtle()
-            #print(new_car.ycor())
             self.the_cars.append(new_car)
 
     def move_car(self, current_level):
@@ -40,7 +39,6 @@ class CarManager(Turtle):
 
     def speed_up(self):
         self.speed += MOVE_INCREMENT
-        #print(f"Speed: {self.speed}")
 
     def car_collision_area(self):
         return self.xcor() - 20, self.ycor()
