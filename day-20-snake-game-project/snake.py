@@ -10,16 +10,23 @@ class Snake:
     def __init__(self):
         self.the_snake = []
         self.create_snake()
-        self.head = self.the_snake[0] # The head of the snake.
         self.grid = 20
-        self.can_turn = True
-        #can_turn used to stop rapid key presses from causing illegal moves.
-        #only 1 move per "move" cycle is allowed using this flag.
 
     def create_snake(self):
         for segment in range(STARTING_LENGTH):
             pos = int(-segment * 22),0
             self.add_segment(pos)
+
+        self.head = self.the_snake[0] # The head of the snake.
+        self.can_turn = True
+        #can_turn used to stop rapid key presses from causing illegal moves.
+        #only 1 move per "move" cycle is allowed using this flag.
+
+    def reset(self):
+        for seg in self.the_snake:
+            seg.goto(1000,1000)
+        self.the_snake.clear()
+        self.create_snake()
 
     def add_segment(self, position):
         snake_segment = Turtle(shape="square")
