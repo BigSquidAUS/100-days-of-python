@@ -9,6 +9,7 @@
 
 # Initialise an empty list to hold all the invited names.
 name_list = []
+PLACEHOLDER = "[name]"
 
 # Open the file containing the list of invitee names.
 with open("Input/Names/invited_names.txt") as file_names:
@@ -19,20 +20,10 @@ with open("Input/Names/invited_names.txt") as file_names:
         # Add the cleaned name to the name_list.
         name_list.append(name)
 
-# Loop through each invited name from the list.
-for invited in name_list:
-    # Open the template letter file for each name.
-    with open("Input/Letters/starting_letter.txt", mode="r") as file_letter:
-        # Read the entire contents of the template letter.
-        new_letter = file_letter.read()
+with open("Input/Letters/starting_letter.txt") as letter_template:
+    template_contents = letter_template.read()
 
-        # Replace the placeholder "[name]" in the template with the actual name.
-        new_letter = new_letter.replace("[name]", invited)
-
-        # Optional: Print the personalised letter to the console.
-        print(new_letter)
-
-        # Create a new file with the personalised letter.
-        with open(f"Output/ReadyToSend/Letter for {invited}.txt", mode="w") as output_file:
-            # Write the personalised letter to the new file.
-            output_file.write(new_letter)
+    for name in name_list:
+        new_letter = template_contents.replace(PLACEHOLDER,name)
+        with open(f"Output/ReadyToSend/Letter for {name}.txt", mode="w") as output_letter:
+            output_letter.write(new_letter)
