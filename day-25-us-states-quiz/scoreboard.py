@@ -12,4 +12,7 @@ class Scoreboard(Turtle):
     def increase_score(self):
         self.score += 1
         self.clear()
-        self.write(f"Score: {self.score}")
+        self.write(f"Score: {self.score} / 50")
+
+    def the_score(self):
+        return self.score
