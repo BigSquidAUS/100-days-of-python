@@ -1,3 +1,5 @@
+# EXAMPLE CODE
+
 student_dict = {
     "student": ["Angela", "James", "Lily"], 
     "score": [56, 76, 98]
@@ -6,6 +8,8 @@ student_dict = {
 #Looping through dictionaries:
 for (key, value) in student_dict.items():
     #Access key and value
+    # print(key)
+    # print(value)
     pass
 
 import pandas
@@ -15,10 +19,14 @@ student_data_frame = pandas.DataFrame(student_dict)
 for (index, row) in student_data_frame.iterrows():
     #Access index and row
     #Access row.student or row.score
-    pass
+    print(row)
+    print(row.student)
+    print(row.score)
 
 # Keyword Method with iterrows()
 # {new_key:new_value for (index, row) in df.iterrows()}
+
+# END EXAMPLE CODE
 
 # Step 1: Import the pandas library so we can work with CSV files and data tables
 import pandas
@@ -30,26 +38,24 @@ import pandas
 data = pandas.read_csv("nato_phonetic_alphabet.csv")
 
 # Create a dictionary from the DataFrame:
-# - Each row has a letter and its corresponding code word
-# - This comprehension turns those into key-value pairs
+# - Loop through each row in the table
+# - Use the 'letter' column as the key, and the 'code' column as the value
 nato_dictionary = {row.letter: row.code for (index, row) in data.iterrows()}
 
-# Print out each letter and its code to verify the dictionary was created correctly
+# Optional: Print each letter and its corresponding code word for verification
 for (index, row) in data.iterrows():
     print(f"{row.letter} : {row.code}")
 
 # TO-DO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-# Ask the user to type a word to convert into NATO phonetic code
-user_input = input("Convert to NATO: ")
+# Ask the user to enter a word; convert it immediately to uppercase so it matches the dictionary keys
+user_input = input("Convert to NATO: ").upper()
 
-# Break the user’s input string into a list of individual letters
-letters = [letter for letter in user_input]
+# Convert the word into a list of NATO phonetic code words using a list comprehension:
+# - Loop through each letter in the uppercase user input
+# - Look up the code word for each letter in the nato_dictionary
+# - This assumes all characters are valid keys in the dictionary
+output_list = [nato_dictionary[letter] for letter in user_input]
 
-# Create a new list of phonetic code words:
-# - For each letter, convert it to uppercase
-# - If it exists in the dictionary, get its code word and add it to the list
-phonetic_list = [nato_dictionary[l.upper()] for l in letters if l.upper() in nato_dictionary]
-
-# Print the final list of code words
-print(phonetic_list)
+# Print the list of code words
+print(output_list)
