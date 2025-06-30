@@ -36,19 +36,8 @@ def get_xy(the_state):
 def unguessed_states_to_csv(states_list, guessed_states_list):
     # Define a function that takes two lists: all states, and the states that have already been guessed.
 
-    unguessed_states = []
-    # Initialise an empty list to store states that have not yet been guessed.
-
-    for state in states_list:
-        # Loop through each state in the full list of states.
-
-        if state not in guessed_states_list:
-            # If the current state is *not* in the guessed states list...
-            unguessed_states.append(state)
-            # ...add it to the unguessed_states list.
-        else:
-            print(f"{state} was guessed.")
-            # Otherwise, print that this state was already guessed (for feedback/debugging).
+    unguessed_states = [state for state in states_list if state not in guessed_states_list]
+    # Use a list comprehension to check which states were not guessed and add them to an unguessed_states list.
 
     unguessed_states_dict = {
         'State': unguessed_states,
