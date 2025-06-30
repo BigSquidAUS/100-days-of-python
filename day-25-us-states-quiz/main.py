@@ -22,7 +22,10 @@ guessed_states = []
 scoreboard = Scoreboard()
 
 while scoreboard.the_score() < 50:
-    answer_state = screen.textinput("Guess the state","Enter the name of state")
+    answer_state = screen.textinput("Guess the state","Enter the name of state or type 'exit' to quit.")
+
+    if answer_state == "exit":
+        break
 
     if game_manager.check_answer(answer=answer_state,answer_list=states,guessed_states_list=guessed_states): #If check_answer is true then get the X,Y coordinates.
         x_coord = int(game_manager.get_xy(the_state=answer_state)[0])
@@ -36,4 +39,4 @@ while scoreboard.the_score() < 50:
 
     turtle.onscreenclick(get_mouse_coords)
 
-turtle.mainloop()
+game_manager.unguessed_states_to_csv(states_list=states, guessed_states_list=guessed_states)
