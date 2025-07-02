@@ -48,14 +48,19 @@ for (index, row) in data.iterrows():
 
 # TO-DO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-# Ask the user to enter a word; convert it immediately to uppercase so it matches the dictionary keys
-user_input = input("Convert to NATO: ").upper()
+def generate_phonetic():
+    # Ask the user to enter a word; convert it immediately to uppercase so it matches the dictionary keys
+    user_input = input("Convert to NATO: ").upper()
+    # Convert the word into a list of NATO phonetic code words using a list comprehension:
+    # - Loop through each letter in the uppercase user input
+    # - Look up the code word for each letter in the nato_dictionary
+    # - This assumes all characters are valid keys in the dictionary
+    try:
+        output_list = [nato_dictionary[letter] for letter in user_input]
+    except KeyError as error_message:
+        print("Only letters in the alphabet please.")
+        generate_phonetic()
+    else:
+        print(output_list) # Print the list of code words
 
-# Convert the word into a list of NATO phonetic code words using a list comprehension:
-# - Loop through each letter in the uppercase user input
-# - Look up the code word for each letter in the nato_dictionary
-# - This assumes all characters are valid keys in the dictionary
-output_list = [nato_dictionary[letter] for letter in user_input]
-
-# Print the list of code words
-print(output_list)
+generate_phonetic()
