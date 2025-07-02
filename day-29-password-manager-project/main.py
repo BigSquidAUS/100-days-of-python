@@ -1,7 +1,9 @@
+from json import JSONDecodeError
 from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
@@ -32,8 +34,8 @@ def get_user_input():
         "Email" : email,
         "Password" : password
     }
-
     blank_fields = [name for name, value in fields.items() if not value.strip()]
+
     if blank_fields:
         message = ""
         for field in blank_fields:
@@ -43,15 +45,34 @@ def get_user_input():
     else:
         is_ok = messagebox.askokcancel(title=website, message=f"Details for {website}:\nEmail: {email}\nPassword: {password}\nDo you want to add these?")
         if is_ok:
-            with open("data.txt", "a") as file:
-                file.write(f"{website} | {email} | {password}\n")
+            new_data = {
+                website: {
+                    "email": email,
+                    "password": password,
+                }}
+
+            try:
+                print("Existing JSON file found. Updating.")
+                with open("data.json", "r") as data_file:
+                    data = json.load(data_file)
+                    data.update(new_data)
+                with open("data.json","w") as data_file:
+                    json.dump(data, data_file, indent=4)
+
+            except (FileNotFoundError, JSONDecodeError) as e: # This runs if the JSON file does not exist or is empty.
+                print("JSON file was created.")
+                with open("data.json","w") as data_file:
+                    json.dump(new_data, data_file, indent=4)
+
 
             label_feedback.config(text="Password Added Successfully!",fg="#379b46")
             entry_website.delete(0,END)
             entry_password.delete(0,END)
         else:
             label_feedback.config(text="Input cancelled by user", fg="#ff0000")
-
+#----------------------------- SEARCH PASSWORDS ------------------------#
+def search_passwords():
+    pass
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
@@ -62,18 +83,20 @@ canvas.create_image(100,100,image=logo_image)
 canvas.grid(column=1, row=0)
 
 label_website = Label(text="Website:")
-entry_website = Entry(width=35)
+entry_website = Entry()
 label_email = Label(text="Email / Username:")
 entry_email = Entry(width=35)
 label_password = Label(text="Password:")
 entry_password = Entry(width=21)
 button_generate = Button(text="Generate Password", command=generate_password)
 button_add = Button(width=36, text="Add",command=get_user_input)
+button_search = Button(text="Search",command=search_passwords)
 label_feedback = Label(text="")
 
 label_website.grid(column=0, row=1,sticky="w")
-entry_website.grid(column=1,row=1,columnspan=2,sticky="ew")
+entry_website.grid(column=1,row=1,columnspan=1,sticky="ew")
 entry_website.focus()
+button_search.grid(column=2,row=1,sticky="ew")
 label_email.grid(column=0,row=2,sticky="w")
 entry_email.grid(column=1,row=2,columnspan=2,sticky="ew")
 entry_email.insert(0,"me@myemail.com")
