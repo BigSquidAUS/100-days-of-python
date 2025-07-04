@@ -72,7 +72,33 @@ def get_user_input():
             label_feedback.config(text="Input cancelled by user", fg="#ff0000")
 #----------------------------- SEARCH PASSWORDS ------------------------#
 def search_passwords():
-    pass
+    print("Search pressed.")
+    try:
+        search_term = entry_website.get()
+        with open("data.json","r") as data_file:
+            print("Data file found.")
+            data = json.load(data_file)
+
+            for website, value in data.items():
+                if search_term.lower() == website.lower():
+                    output_password = value["password"]
+                    output = (f"The login details for {website} are:\n"
+                              f"{value["email"]}\n"
+                              f"{value["password"]}\n"
+                              f"Password copied to clipboard.")
+                    break
+                else:
+                    output_password = None
+                    output = "Website not found."
+
+            if output_password:
+                pyperclip.copy(output_password)
+
+            message = messagebox.showinfo("Search Result", output)
+
+    except(FileNotFoundError, JSONDecodeError):
+        with open("data.json", "w") as data_file:
+            message = messagebox.showinfo("No Result", "No data file was found\nCreated a new one.")
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
