@@ -57,10 +57,17 @@ numbers = []
 for i in range(1,11):
     numbers.append(i)
 
-#Print all the even numbers
+# Or: The more "Pythonic way": List comprehension:
+numbers = [i for i in range(1,11)]
+
+# Or: The shortest way possible for this exact case:
+numbers = list(range(1,11))
+
+#Print all the even numbers.
 for i in numbers:
     if i % 2 == 0:
         print(i)
+#Can also be done with list comprehension. See "list-comprehensions.py".
 
 #Print the sum of the numbers
 print(sum(numbers))
