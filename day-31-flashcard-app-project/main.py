@@ -69,7 +69,7 @@ def button_known_pressed():
     global card_flipped, timer, word_dict
 
     if len(word_dict) <= 0:
-        #If there are no more words left to learn, display a message and then repopulate the word_dict with all of the words.
+        #If there are no more words left to learn, display a message and then repopulate the word_dict with all the words.
         word_dict = df.to_dict(orient="records")  # Turn the DataFrame into a list of dictionaries.
         new_df = pandas.read_csv("data/french_words.csv")
         word_dict = new_df.to_dict(orient="records")
