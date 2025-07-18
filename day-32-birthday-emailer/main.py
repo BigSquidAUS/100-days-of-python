@@ -7,7 +7,7 @@
 import datetime as dt
 import glob
 import pandas
-from functions import send_email
+from function import send_email
 from random import choice
 
 date_now = dt.datetime.now()
