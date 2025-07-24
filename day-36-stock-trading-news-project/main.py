@@ -2,7 +2,6 @@ import ast
 import os
 from itertools import islice
 import requests
-import datetime as dt
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla"
