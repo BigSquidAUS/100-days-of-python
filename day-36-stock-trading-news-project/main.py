@@ -23,7 +23,7 @@ news_parameters = {
     "sortBy" : "popularity",
 }
 
-use_static_data = False
+use_static_data = True
 #Quickly used up free API call allocation so had to implement static data to continue testing code.
 #use_static_data flag switches between using the API and the static data.
 
@@ -46,12 +46,9 @@ two_day_close = float(closing_prices[1][1])
 # Calculate percentage change.
 close_percentage = ((yesterday_close - two_day_close) / two_day_close) * 100
 
-if close_percentage > 0 :
-    print(f"{STOCK_NAME}: 🔺{close_percentage:.2f}%\n")
-elif close_percentage < 0 :
-    print(f"{STOCK_NAME}: 🔻{close_percentage:.2f}%\n")
-else:
-    print(f"{STOCK_NAME}: No Change")
+up_down = "🔺" if close_percentage > 0 else "🔻" if close_percentage < 0 else "▫️"
+
+print(f"{STOCK_NAME}: {up_down}{close_percentage:.2f}%\n")
 
 if abs(close_percentage) >= 5 :
     #If the stock price increased or decreased by 5 or more percent then get the news headlines for that company.
