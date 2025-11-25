@@ -20,15 +20,14 @@ PROMISED_DOWN = 210.00
 PROMISED_UP = 12.00
 CHROME_DRIVER_PATH = "/Users/ben/Development/chromedriver"
 
-
 class InternetSpeedTwitterBot:
     def __init__(self):
         self.up = 0
         self.down = 0
         self.test_id = 0
-        # Keep Chrome browser open after program finishes? True/False
         self.chrome_options = webdriver.ChromeOptions()
-        self.chrome_options.add_experimental_option(name="detach", value=True)
+        # Keep Chrome browser open after program finishes? True/False
+        self.chrome_options.add_experimental_option(name="detach", value=False)
         self.driver = webdriver.Chrome(options=self.chrome_options)
 
     def get_internet_speed(self): # Get current internet speed.
