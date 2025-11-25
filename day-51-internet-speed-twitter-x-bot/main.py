@@ -18,7 +18,6 @@ auth = OAuth1(API_KEY,API_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
 SPEEDTEST_URL = "https://www.speedtest.net"
 PROMISED_DOWN = 210.00
 PROMISED_UP = 12.00
-CHROME_DRIVER_PATH = "/Users/ben/Development/chromedriver"
 
 class InternetSpeedTwitterBot:
     def __init__(self):
